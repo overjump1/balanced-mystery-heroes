@@ -604,3 +604,10 @@ video {
 .font-black{
   font-family: "big noodle";
 }
+
+@media (prefers-color-scheme: dark) {
+  .dark\:text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+}
