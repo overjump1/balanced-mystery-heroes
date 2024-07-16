@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: "verela round";
+        src: url("../fonts/verela_round/VarelaRound-Regular.ttf");
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: "big noodle";
+        src: url("../fonts/big_noodle/big_noodle_titling.ttf");
+        font-weight: black;
+    }
+}
+
+.font-black{
+    font-family: "big noodle";
+}
