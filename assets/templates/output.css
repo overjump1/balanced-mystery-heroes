@@ -458,8 +458,6 @@ video {
   font-family: "big noodle";
 
   src: url("../fonts/big_noodle/big_noodle_titling.ttf");
-
-  font-weight: black;
 }
 
 *, ::before, ::after {
@@ -595,13 +593,6 @@ video {
 
 .font-black {
   font-weight: 900;
-}
-
-.underline {
-  text-decoration-line: underline;
-}
-
-.font-black{
   font-family: "big noodle";
 }
 
