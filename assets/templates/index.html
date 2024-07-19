@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./output.css" rel="stylesheet">
+  <script src="chance.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="bg-slate-900">
@@ -13,7 +14,11 @@
   <div class="flex justify-center items-center">
     <div id="heroes"></div>
   </div>
+  <div class="flex justify-center items-center">
+    <lable for="role_likelyhood" class="dark:text-white">balance roles</lable>
+    <input type="range" id="role_likelyhood" min="0" max="100" value="50" oninput="buildTeam(role_likelyhood=this.value); $('#role_likelyhood_percentage').html(this.value+'%');" />
+    <output class="dark:text-white" id="role_likelyhood_percentage">50%</output>
+  </div>
   <script src="custom.js"></script>
-
 </body>
 </html>

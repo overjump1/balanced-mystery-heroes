@@ -7,7 +7,7 @@ var teams = {
     "blue": [],
     "red": []
 };
-var ROLE_LAYOUT = {
+const ROLE_LAYOUT = {
     "tank": 1,
     "damage": 2,
     "support": 2
@@ -18,18 +18,17 @@ $.getJSON("heroes.json", function(data) {
     HEROES = data; // Assign the retrieved data to the global variable
     $("#heroes").addClass("grid grid-cols-"+team_players+" gap-4 font-black"); // Add the grid class to the heroes div
     buildTeam();
-    showHeroes(); // Call the function to display the heroes
 });
 
 function showHeroes() {
     // Code to handle the retrieved data goes here
     var html = "";
-    for (let team=0; team<Object.keys(teams).length; team++) {
+    for (let team_color of Object.keys(teams)) {
         for (let slot=0; slot<team_players; slot++) {
-            var hero = teams[COLORS[team]][slot];
+            var hero = teams[team_color][slot];
             html += `
-            <div class="rounded-xl max-w-40 bg-${COLORS[team]}-800 hover:bg-zinc-800">
-                <img src="${hero["picture"]}" alt="${hero["title"]}" class="pointer-events-none rounded-xl border-4 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-zinc-900 via-transparent to-zinc-900"">
+            <div class="rounded-xl max-w-40 bg-${team_color}-800 hover:bg-zinc-800">
+                <img src="${hero["picture"]}" alt="${hero["title"]}" class="min-h-[160px] min-w-[160px] rounded-xl border-4 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-zinc-900 via-transparent to-zinc-900"">
                 <div class="flex justify-center items-center">
                     <h2 class="text-white text-lg font-bold my-2 italic">${hero["title"].replace("-", " ")}</h2>
                     <img src="../imgs/roles/${hero["role"]}.svg" alt="${hero["role"]} role" class="w-8 h-8 my-2 p-1">
@@ -40,47 +39,49 @@ function showHeroes() {
     $("#heroes").html(html);
 }
 
-function buildTeam() {
-    for (let team of Object.keys(teams)){
+function buildTeam(role_likelyhood=50) {
+    teams = {
+        "blue": [],
+        "red": []
+    };
+    for (let team_color of Object.keys(teams)){
         for (let i=0; i<team_players; i++) {
-            let hero = randomHero();
-            teams[team].push(hero);
+            let hero = randomHero(team_color, role_likelyhood);
+            teams[team_color].push(hero);
         }
     }
+    showHeroes();
 }
 
-function randomHero() {
-    var keys = Object.keys(HEROES);
-    var randomKey = keys[Math.floor(Math.random() * keys.length)];
-    console.log(pickRoles(teams["blue"], 0.5))
-    return HEROES[randomKey];
+function randomHero(team_color, role_likelyhood){
+    role = pickRoles(team_color, role_likelyhood);
+    hero = chance.pickone(getHeroesByRole(role));
+    
+    return HEROES[hero];
 }
 
-function getRemainingRoles(team){
-    roles = ROLE_LAYOUT
-    for (player in team){
-        roles[team[player]["role"]] -= 1;
-        if (roles[team[player]["role"]] == 0){
-            delete roles[team[player]["role"]];
-        }
+function getHeroesByRole(role) {
+    return Object.keys(HEROES).filter(hero => HEROES[hero]["role"] == role);
+}
+
+function getRemainingRoles(team_color){
+    team = teams[team_color];
+    roles = { ...ROLE_LAYOUT };
+    for (let hero of team){
+        roles[hero["role"]] -= 1;
     }
+    return roles;
 }
 
-function pickRoles(team, temperature){
-    if (Math.random() < temperature){
-        role = Object.keys(ROLE_LAYOUT).sort(() => Math.random() - 0.5);
+function pickRoles(team_color, likelyhood){
+    
+    // value from 0-100. 100 is 100% chance of picking the right role. 0 is 100% chance of picking a random role.
+    if (!chance.bool({ likelihood: likelyhood })){
+        role = chance.pickone(Object.keys(ROLE_LAYOUT));
     } else {
-        role = RandomProbebility(getRemainingRoles(team));
+        remaining = getRemainingRoles(team_color);
+        
+        role = chance.weighted(Object.keys(remaining), Object.values(remaining));
     }
     return role;
-}
-
-function RandomProbebility(dic){
-    //picks a random key using probebility from values
-    let random = Math.floor(Math.random() * 100);
-    for(let prob in dic){
-        if(prob>=random){
-        return dic[prob];
-        }
-    }
 }

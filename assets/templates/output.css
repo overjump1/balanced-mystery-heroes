@@ -593,8 +593,24 @@ video {
   height: 2rem;
 }
 
+.min-h-\[220px\] {
+  min-height: 220px;
+}
+
+.min-h-\[160px\] {
+  min-height: 160px;
+}
+
 .w-8 {
   width: 2rem;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
+.min-w-\[160px\] {
+  min-width: 160px;
 }
 
 .max-w-40 {
@@ -905,6 +921,10 @@ video {
 
 .grayscale {
   --tw-grayscale: grayscale(100%);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
