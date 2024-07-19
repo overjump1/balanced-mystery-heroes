@@ -23,7 +23,7 @@ function showHeroes() {
             var hero = randomHero();
             html += `
             <div class="rounded-xl max-w-40 bg-${COLORS[team]}-800 hover:bg-zinc-800">
-                <img src="${hero["picture"]}" alt="${hero["title"]}" class="rounded-xl border-4 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-zinc-900 via-transparent to-zinc-900"">
+                <img src="${hero["picture"]}" alt="${hero["title"]}" class="pointer-events-none rounded-xl border-4 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-zinc-900 via-transparent to-zinc-900"">
                 <div class="flex justify-center items-center">
                     <h2 class="text-white text-lg font-bold my-2 italic">${hero["title"].replace("-", " ")}</h2>
                     <img src="../imgs/roles/${hero["role"]}.svg" alt="${hero["role"]} role" class="w-8 h-8 my-2 p-1">
