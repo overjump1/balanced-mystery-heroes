@@ -27,11 +27,11 @@ function showHeroes() {
         for (let slot=0; slot<team_players; slot++) {
             var hero = teams[team_color][slot];
             html += `
-            <div class="rounded-xl max-w-40 bg-${team_color}-800 hover:bg-zinc-800" team="${team_color}" slot="${slot}">
-                <img src="${hero["picture"]}" alt="${hero["title"]}" class="min-h-[160px] min-w-[160px] rounded-xl border-2 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-zinc-900 via-transparent to-zinc-900"">
-                <div class="flex justify-center items-center">
-                    <h2 class="text-white text-lg font-bold my-2 italic">${hero["title"].replace("-", " ")}</h2>
-                    <img src="../imgs/roles/${hero["role"]}.svg" alt="${hero["role"]} role" class="w-8 h-8 my-2 p-1">
+            <div class="rounded-xl max-w-full sm:max-w-40 bg-${team_color}-800 hover:bg-zinc-800" team="${team_color}" slot="${slot}">
+                <img src="${hero["picture"]}" alt="${hero["title"]}" class="w-full sm:min-h-[160px] sm:min-w-[160px] rounded-xl border-2 bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-zinc-900 via-transparent to-zinc-900">
+                <div class="flex flex-col sm:flex-row justify-center items-center">
+                    <h2 class="text-white text-lg font-bold mt-2 italic text-center">${hero["title"].replace("-", " ")}</h2>
+                    <img src="../imgs/roles/${hero["role"]}.svg" alt="${hero["role"]} role" class="h-8 p-1">
                 </div>
             </div>`;
         }
