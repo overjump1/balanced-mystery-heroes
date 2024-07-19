@@ -568,10 +568,6 @@ video {
   --tw-contain-style:  ;
 }
 
-.pointer-events-none {
-  pointer-events: none;
-}
-
 .fixed {
   position: fixed;
 }
@@ -593,20 +589,12 @@ video {
   height: 2rem;
 }
 
-.min-h-\[220px\] {
-  min-height: 220px;
-}
-
 .min-h-\[160px\] {
   min-height: 160px;
 }
 
 .w-8 {
   width: 2rem;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .min-w-\[160px\] {
@@ -669,8 +657,8 @@ video {
   border-radius: 0.75rem;
 }
 
-.border-4 {
-  border-width: 4px;
+.border-2 {
+  border-width: 2px;
 }
 
 .bg-blue-800 {
