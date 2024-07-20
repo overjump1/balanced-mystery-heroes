@@ -19,6 +19,9 @@
     <input type="range" id="role_likelyhood" min="0" max="100" value="50" oninput="buildTeam(role_likelyhood=this.value); $('#role_likelyhood_percentage').html(this.value+'%');" />
     <output class="dark:text-white" id="role_likelyhood_percentage">50%</output>
   </div>
+  <div class="flex justify-center items-center">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onclick="buildTeam(role_likelyhood=$('#role_likelyhood').val())">reroll</button>
+  </div>
   <script src="custom.js"></script>
 </body>
 </html>
